@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings Management UI</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    min-height:100vh;
+    padding:30px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+/* Header */
+.header{
+    margin-bottom:25px;
+}
+
+.header h1{
+    color:#1f2937;
+    margin-bottom:5px;
+}
+
+.header p{
+    color:#6b7280;
+}
+
+/* Layout */
+.settings-layout{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:25px;
+}
+
+/* Sidebar */
+.sidebar{
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    height:fit-content;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:10px;
+}
+
+.sidebar a{
+    display:block;
+    text-decoration:none;
+    color:#374151;
+    padding:12px 15px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#2563eb;
+    color:white;
+}
+
+/* Settings Panel */
+.settings-panel{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card h2{
+    margin-bottom:20px;
+    color:#111827;
+}
+
+/* Form Elements */
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#374151;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#2563eb;
+}
+
+/* Toggle Switch */
+.setting-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.setting-row:last-child{
+    border-bottom:none;
+}
+
+.setting-title{
+    font-weight:600;
+    color:#111827;
+}
+
+.setting-desc{
+    color:#6b7280;
+    font-size:14px;
+}
+
+.switch{
+    position:relative;
+    display:inline-block;
+    width:55px;
+    height:28px;
+}
+
+.switch input{
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+.slider{
+    position:absolute;
+    cursor:pointer;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#ccc;
+    transition:.4s;
+    border-radius:30px;
+}
+
+.slider:before{
+    position:absolute;
+    content:"";
+    height:22px;
+    width:22px;
+    left:3px;
+    bottom:3px;
+    background:white;
+    transition:.4s;
+    border-radius:50%;
+}
+
+input:checked + .slider{
+    background:#10b981;
+}
+
+input:checked + .slider:before{
+    transform:translateX(27px);
+}
+
+/* Button */
+.save-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.save-btn:hover{
+    background:#1d4ed8;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    .settings-layout{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar{
+        order:2;
+    }
+
+    .setting-row{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Settings Management</h1>
+        <p>Manage your account preferences and application settings.</p>
+    </div>
+
+    <div class="settings-layout">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="#" class="active">⚙ General</a></li>
+                <li><a href="#">🔒 Security</a></li>
+                <li><a href="#">🔔 Notifications</a></li>
+                <li><a href="#">🌐 Language</a></li>
+                <li><a href="#">🎨 Appearance</a></li>
+                <li><a href="#">💳 Billing</a></li>
+                <li><a href="#">📄 Privacy</a></li>
+            </ul>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="settings-panel">
+
+            <!-- General Settings -->
+            <div class="card">
+                <h2>General Settings</h2>
+
+                <div class="form-group">
+                    <label>Site Name</label>
+                    <input type="text" value="My Application">
+                </div>
+
+                <div class="form-group">
+                    <label>Timezone</label>
+                    <select>
+                        <option>UTC +00:00</option>
+                        <option>UTC +05:30 (India)</option>
+                        <option>UTC -05:00 (USA)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Language</label>
+                    <select>
+                        <option>English</option>
+                        <option>தமிழ்</option>
+                        <option>Hindi</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="card">
+                <h2>Notification Preferences</h2>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-title">Email Notifications</div>
+                        <div class="setting-desc">
+                            Receive updates via email.
+                        </div>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-title">SMS Alerts</div>
+                        <div class="setting-desc">
+                            Receive important SMS alerts.
+                        </div>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-title">Push Notifications</div>
+                        <div class="setting-desc">
+                            Get browser notifications.
+                        </div>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="card">
+                <h2>Security Settings</h2>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-title">Two-Factor Authentication</div>
+                        <div class="setting-desc">
+                            Add an extra layer of security.
+                        </div>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <div class="setting-title">Login Alerts</div>
+                        <div class="setting-desc">
+                            Notify me when a new login occurs.
+                        </div>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="save-btn">
+                Save Settings
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
